@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <header class="background--white">
-            <img src="~/assets/logo.svg" alt="Frontiers logo" width="160">
+            <img src="@/assets/logo.svg" alt="Frontiers logo" width="160">
             <div class="text--size-medium">
                 <p>
                     <b>Candidate:</b> Daniel Ramírez Torres &lt;<a class="text--size-medium"

@@ -106,9 +106,9 @@ export default Vue.extend({
                  */
                 this.$nextTick(() => {
                     if (this.$refs.card) {
-                        const card: HTMLElement = <HTMLElement>this.$refs.card.$el
-                        card.style.top = clickedUserCoords.y + clickedUserCoords.height + 'px'
-                        card.style.left = clickedUserCoords.x + 'px'
+                        const card: any = this.$refs.card
+                        card.$el.style.top = clickedUserCoords.y + clickedUserCoords.height + 'px'
+                        card.$el.style.left = clickedUserCoords.x + 'px'
                     }
                 })
             }
