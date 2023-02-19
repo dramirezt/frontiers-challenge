@@ -1,0 +1,65 @@
+.background--white {
+    background-color: $color-white;
+}
+  
+.border--primary {
+    border-color: $color-primary;
+}
+
+.text {
+    &--align {
+        &-center {
+            text-align: center;
+        }
+    }
+    
+    &--color {
+        &-default {
+            color: $color-text;
+        }
+
+        &-gray {
+            color: $color-gray;
+        }
+
+        &-primary {
+            color: $color-primary;
+        }
+    }
+
+    &--size {
+        &-large {
+            font-size: $text--size-large;
+            line-height: $text--lineheight-large;
+        }
+
+        &-medium {
+            font-size: $text--size-medium;
+            line-height: $text--lineheight-medium;
+        }
+
+        &-xlarge {
+            font-size: $text--size-xlarge;
+            line-height: $text--lineheight-xlarge;
+        }
+
+        &-title {
+            font-size: $text--size-title;
+            line-height: $text--lineheight-title;
+        }
+    }
+    
+    &--weight {
+        &-bold {
+            font-weight: $text--weight-bold;
+        }
+        
+        &-light {
+            font-weight: $text--weight-light;
+        }
+
+        &-medium {
+            font-weight: $text--weight-medium;
+        }
+    }
+}

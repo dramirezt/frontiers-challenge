@@ -1,0 +1,137 @@
+@import "https://9d0dd7a648345f19af83-877d2ecaf11b88d5e17327c758e17ef6.ssl.cf2.rackcdn.com/museo-sans-1.0.1/css/museo-sans.css";
+@import "variables.scss";
+@import "utils.scss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+    background-color: $color-background;
+    color: $color-text;
+    font-family: MuseoSans;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //justify-content: center;
+    padding: 100px 20px;
+    min-height: 100vh;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 16px;
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    left: 0;
+    width: 385px;
+    max-width: 100%;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.08), 0px 14px 28px rgba(0, 0, 0, 0.1);
+    
+    .card__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+
+        .card__image {
+            width: 56px;
+            height: 56px;
+            background-position: center;
+            background-size: cover;
+            border: 1px solid #E0E0E0;
+            border-radius: 100px;
+            margin-left: 25px;
+        
+            &--error {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 160, 210, 0.05);
+                border: 1px solid;
+            }
+        }
+    }
+
+    .card__body {
+        display: flex;
+        line-height: 20px;
+        gap: 16px;
+    }
+
+    .card__footer {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+}
+
+a {
+    font-size: 11px;
+    line-height: 17px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+
+    .icon {
+        &:first-child {
+            margin-right: 5px;
+        }
+    }
+}
+
+.fade-enter-active {
+    animation: fade 0.3s ease-in-out;
+}
+
+.fade-leave-active {
+    animation: fade 0.3s ease-in-out reverse;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.page-transition-leave,
+.page-transition-enter-active {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.6s ease-in-out;
+    transition-delay: 0.6s;
+}
+
+.page-transition-enter,
+.page-transition-leave-active {
+    transform: translateY(-20%);
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+}
+
+.page-transition-enter {
+    transform: translateY(20%);
+}
