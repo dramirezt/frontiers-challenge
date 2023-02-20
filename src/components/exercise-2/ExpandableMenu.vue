@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import ExpandableMenu from './ExpandableMenu.vue'
 import { computed, ref, onMounted, watch } from 'vue'
+import type Menu from '@/types/Menu'
 
-interface Menu {
-    title: String,
-    submenu: Array<Menu>
+interface Props {
+    menuTree: Menu,
+    forceClose?: boolean
 }
 
-const props = defineProps<{
-    menuTree: Menu,
-    forceClose: boolean
-}>()
+const props = withDefaults(defineProps<Props>(), {
+    forceClose: false
+})
 
 const isExpanded = ref(false)
 const submenu = ref<HTMLElement | null>(null)
@@ -78,7 +78,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="menu" :class="{ 'expanded': isExpanded && menuTree.submenu }">
+    <div class="menu" :class="{ 'expanded': isExpanded && menuTree.submenu.length }">
         <div class="menu__title" @click="toggleMenu">
             {{ menuTree.title }}
 
@@ -92,61 +92,3 @@ onMounted(() => {
         </div>
     </div>
 </template>
-
-<style lang="scss" scoped>
-.menu {
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-
-    &.expanded {
-        >.menu__title {
-            span {
-                &::after {
-                    transform: translate(0, -50%) rotate(0deg);
-                }
-            }
-        }
-    }
-}
-
-.menu__title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    height: 40px;
-    cursor: pointer;
-    text-align: center;
-    border: 1px solid #000;
-
-    span {
-        width: 15px;
-        height: 2px;
-        background-color: #000;
-        position: relative;
-
-        &::after {
-            content: "";
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transition: all 0.3s ease-in-out;
-            transform: translate(0, -50%) rotate(90deg);
-            width: 100%;
-            height: 2px;
-            background-color: #000;
-        }
-    }
-}
-
-.submenu {
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-
-    &.expanded {
-        height: auto;
-    }
-}
-</style>

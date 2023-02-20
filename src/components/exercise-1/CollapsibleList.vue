@@ -1,6 +1,5 @@
 <script lang="ts">
 import Vue from 'vue'
-import { ref } from 'vue'
 import IconChevron from '@/components/exercise-1/icons/IconChevron.vue'
 
 export default Vue.extend({

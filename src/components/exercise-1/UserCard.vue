@@ -1,5 +1,6 @@
 <script lang="ts">
 import Vue from 'vue'
+import type { PropType } from 'vue'
 import IconOpen from '@/components/exercise-1/icons/IconOpen.vue'
 import type User from '@/types/User'
 
@@ -8,7 +9,7 @@ export default Vue.extend({
         IconOpen
     },
     props: {
-        user: { type: Object as () => User, required: false }
+        user: Object as PropType<User>
     },
     data() {
         return {

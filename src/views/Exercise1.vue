@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import PaperPanel from '@/components/exercise-1/PaperPanel.vue'
 import AnimatedDocument from '@/components/exercise-1/AnimatedDocument.vue'
+import type Paper from '@/types/Paper'
 
 export default Vue.extend({
     components: {
@@ -10,16 +11,16 @@ export default Vue.extend({
     },
     data() {
         return {
-            paper: undefined,
-            dataURL: '/frontiers-metropolis-challenge-L1.json',
+            paper: <Paper | undefined>(undefined),
+            dataURL: <string>('/frontiers-metropolis-challenge-L1.json'),
         }
     },
     methods: {
         fetchData(): void {
             fetch(this.dataURL)
                 .then(res => res.json())
-                .then(json => {
-                    this.paper = json
+                .then(paperData => {
+                    this.paper = paperData
                 })
                 .catch(error => {
                     console.error('Error reading json file: ', error)
@@ -34,7 +35,8 @@ export default Vue.extend({
 
 <template>
     <div class="page">
-        <AnimatedDocument />
+        <!-- Added 600ms as extra animation delay to take into account view transition-->
+        <AnimatedDocument :extraAnimationDelay="600"/>
         <div class="text--align-center text--size-title text--weight-bold">
             Thank you for considering participating to this paper
         </div>

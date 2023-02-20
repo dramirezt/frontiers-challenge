@@ -1,10 +1,11 @@
 <script lang="ts">
 import Vue from 'vue'
-import type User from '@/types/User';
+import type { PropType } from 'vue'
+import type User from '@/types/User'
 
 export default Vue.extend({
     props: {
-        user: { type: Object as () => User },
+        user: Object as PropType<User>,
         isLast: { type: Boolean, default: false }
     }
 })

@@ -110,6 +110,6 @@ const menuTree = {
 
 <template>
     <div class="page">
-        <ExpandableMenu :menuTree="menuTree" :force-close="false" />
+        <ExpandableMenu :menuTree="menuTree" />
     </div>
 </template>

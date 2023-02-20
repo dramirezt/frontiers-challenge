@@ -8,6 +8,9 @@ export default Vue.extend({
         IconDocument,
         IconDocumentCheck
     },
+    props: {
+        extraAnimationDelay: { type: Number, default: 0}
+    },
     data() {
         return {
             animationBaseDelay: <number>(450)
@@ -50,8 +53,7 @@ export default Vue.extend({
         }
     },
     mounted() {
-        // Added +600ms delay to take into account page transition
-        setTimeout(this.animateDocumentIcon, this.animationBaseDelay + 600)
+        setTimeout(this.animateDocumentIcon, this.animationBaseDelay + this.extraAnimationDelay)
     }
 })
 </script>

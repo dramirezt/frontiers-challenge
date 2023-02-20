@@ -1,5 +1,6 @@
 <script lang="ts">
 import Vue from 'vue'
+import type { PropType } from 'vue'
 import CollapsibleList from '@/components/exercise-1/CollapsibleList.vue'
 import PaperUser from '@/components/exercise-1/PaperUser.vue'
 import UserCard from '@/components/exercise-1/UserCard.vue'
@@ -14,7 +15,7 @@ export default Vue.extend({
         UserCard
     },
     props: {
-        paper: { type: Object as () => Paper }
+        paper: { type: Object as PropType<Paper> }
     },
     data() {
         return {
@@ -22,10 +23,7 @@ export default Vue.extend({
         }
     },
     computed: {
-        /**
-         * Returns unique list of affiliations from all users
-         */
-        affiliations(): Array<Affiliation> {
+        uniqueAffiliations(): Array<Affiliation> {
             let affiliations: Array<Affiliation> = []
 
             if (this.paper) {
@@ -65,12 +63,9 @@ export default Vue.extend({
     methods: {
         /**
          * Compares two affiliations to check if they are the same
-         * 
-         * There is an ID duplicated on the JSON source file so ID check is not viable.
          */
         compareAffiliations(a: Affiliation, b: Affiliation): boolean {
-            // return aff.id == a.id
-            return a.name == b.name && a.city == b.city && a.country == b.country
+            return a.id == b.id
         },
         /**
          * Adds index field to user's affiliations using computed affiliations unique list.
@@ -79,11 +74,11 @@ export default Vue.extend({
             let u = JSON.parse(JSON.stringify(user))
 
             u.affiliations.map((aff: Affiliation) => {
-                let userAffiliation = this.affiliations.filter((a: Affiliation) => {
+                let userAffiliation = this.uniqueAffiliations.filter((a: Affiliation) => {
                     return this.compareAffiliations(aff, a)
                 })[0]
 
-                aff.index = this.affiliations.indexOf(userAffiliation) + 1
+                aff.index = this.uniqueAffiliations.indexOf(userAffiliation) + 1
             })
 
             u.affiliations.sort((a: Affiliation, b: Affiliation) => {
@@ -152,7 +147,7 @@ export default Vue.extend({
         </div>
         <CollapsibleList :title="'Affiliations'">
             <template v-slot:content>
-                <div class="text--color-gray text--weight-light" v-for="(aff, index) in affiliations" :key="'aff-' + index">
+                <div class="text--color-gray text--weight-light" v-for="(aff, index) in uniqueAffiliations" :key="'aff-' + index">
                     <sup class="text--color-default">{{ index + 1 }}</sup>
                     {{ aff.name }}, {{ aff.city }}, {{ aff.country }}
                 </div>
